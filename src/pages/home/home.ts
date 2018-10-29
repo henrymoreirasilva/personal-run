@@ -43,5 +43,4 @@ export class HomePage {
     this.formLogin.password = '';
     this.userLogged = null;
   }
-
 }
