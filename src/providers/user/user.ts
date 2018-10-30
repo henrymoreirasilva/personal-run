@@ -38,6 +38,20 @@ export class UserProvider {
     return this.http.get(`${this.uri}/treino/?p=${id}`);
   }
 
+  getCorridaDia(planejamento, date) {
+    return this.http.get(`${this.uri}/treino/corrida/?req=dia&pl=${planejamento}&date=${date}`);
+    /*return [{ description: 'Corrida leve 1', start: '19:00', end: '20:00', obs: 'Corrida leve 5km/h.'},
+    { description: 'Corrida leve 2', start: '19:00', end: '20:00', obs: 'Corrida leve 5km/h.'},
+    { description: 'Corrida leve 3', start: '19:00', end: '20:00', obs: 'Corrida leve 5km/h.'}];*/
+
+  }
+
+  updateComent(evento, comentario) {
+    let queryString = `req=obs&evento=${evento}&coment=${comentario}`;
+    return this.http.post(`${this.uri}/treino/corrida/index.php`, queryString, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+  }
+
+
   /*exist() {
     this.get().then(res => {
       console.log('resultado >>> ', res);

@@ -7,7 +7,7 @@ import { CorridaPage } from './corrida';
     CorridaPage,
   ],
   imports: [
-    IonicPageModule.forChild(CorridaPage),
+    IonicPageModule.forChild(CorridaPage)
   ],
 })
 export class CorridaPageModule {}
