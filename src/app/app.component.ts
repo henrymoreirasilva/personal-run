@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-//import { ListPage } from '../pages/list/list';
+import { UserProvider } from '../providers/user/user';
 import { CorridaPage } from '../pages/corrida/corrida';
 
 @Component({
@@ -16,8 +16,8 @@ export class MyApp {
   rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
-
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  planos: any;
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private userProvider: UserProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -40,6 +40,21 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    if (page.title == 'Corrida') {
+      this.userProvider.get('planos').then((res) => {
+        this.planos =  res;
+        this.nav.setRoot(page.component, {'corrida': this.planos.corrida});
+      })
+    } else if (page.title == 'Musculação') {
+      this.userProvider.get('planos').then((res) => {
+        this.planos =  res;
+        this.nav.setRoot(page.component, {'musculacao': this.planos.musculacao});
+      })
+    } else {
+      this.nav.setRoot(page.component);
+    }
+
+
+    
   }
 }
