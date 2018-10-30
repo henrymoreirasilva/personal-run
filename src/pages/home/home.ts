@@ -18,8 +18,12 @@ export class HomePage {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.userLogged = null;
-    this.userProvider.get().then((res) => {
+    this.userProvider.get('user').then((res) => {
       this.userLogged = res;
+
+      if (this.userLogged) {
+        this.getPlanos(this.userLogged.id);
+      }
     });
   }
 
@@ -32,15 +36,22 @@ export class HomePage {
           console.log(res.msgerror);
         } else {
           this.userLogged = res.data;
-          this.userProvider.create(this.userLogged)
+          this.userProvider.create('user', this.userLogged);
+          this.getPlanos(this.userLogged.id);
         }
       }
     })
   }
 
   logout() {
-    this.userProvider.remove();
+    this.userProvider.remove('user');
     this.formLogin.password = '';
     this.userLogged = null;
+  }
+
+  getPlanos(id) {
+    this.userProvider.getPlanos(id).subscribe((res: any) => {
+      this.userProvider.create('planos', res.data);
+    })
   }
 }

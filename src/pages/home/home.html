@@ -34,16 +34,16 @@
   <ion-card *ngIf="userLogged">
 
     <ion-card-header>
-      Aluno: {{ userLogged.name }} 
+      Aluno: {{ userLogged.name }}
     </ion-card-header>
 
     <ion-card-content>
       <div id="user-perfil">
-      <img src="{{userLogged.image }}" class="user-image" />
-      <br />
-      <em>{{ userLogged.alias }}</em>
-    </div>
-    <button (click)="logout()" ion-button small color="danger">Sair</button>
+        <img src="{{userLogged.image }}" class="user-image" />
+        <br />
+        <em>{{ userLogged.alias }}</em>
+      </div>
+      <button (click)="logout()" ion-button small color="danger">Sair</button>
     </ion-card-content>
 
   </ion-card>

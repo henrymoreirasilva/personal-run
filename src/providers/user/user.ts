@@ -16,22 +16,26 @@ export class UserProvider {
     //console.log('Hello UserProvider Provider');
   }
 
-  create(user: object) {
-    return this.storage.set('user', user);
+  create(name: string, data: object) {
+    return this.storage.set(name, data);
   }
 
-  get(): Promise<any> {
-    return this.storage.get('user');
+  get(name: string): Promise<any> {
+    return this.storage.get(name);
   }
 
   // Quando deslogar deve remova do storage
-  remove() {
-    this.storage.remove('user');
+  remove(name: string) {
+    this.storage.remove(name);
   }
 
   login(data) {
     let queryString = `user=${data.user}&password=${data.password}`
     return this.http.post(`${this.uri}/auth.php`, queryString, {headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
+  }
+
+  getPlanos(id) {
+    return this.http.get(`${this.uri}/treino/?p=${id}`);
   }
 
   /*exist() {
