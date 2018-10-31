@@ -40,9 +40,12 @@ export class UserProvider {
 
   getCorridaDia(planejamento, date) {
     return this.http.get(`${this.uri}/treino/corrida/?req=dia&pl=${planejamento}&date=${date}`);
-    /*return [{ description: 'Corrida leve 1', start: '19:00', end: '20:00', obs: 'Corrida leve 5km/h.'},
-    { description: 'Corrida leve 2', start: '19:00', end: '20:00', obs: 'Corrida leve 5km/h.'},
-    { description: 'Corrida leve 3', start: '19:00', end: '20:00', obs: 'Corrida leve 5km/h.'}];*/
+
+
+  }
+
+  getDiasComEvento(planejamento, mes, ano) {
+    return this.http.get(`${this.uri}/treino/corrida/?req=diasevento&pl=${planejamento}&m=${mes}&y=${ano}`);
 
   }
 
@@ -51,7 +54,18 @@ export class UserProvider {
     return this.http.post(`${this.uri}/treino/corrida/index.php`, queryString, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
   }
 
+  getMusculacao(planejamento) {
+    return this.http.get(`${this.uri}/treino/musculacao/?req=treino&pl=${planejamento}`);
 
+
+  }
+
+  updateComentExercicio(exercicio, comentario) {
+    let queryString = `req=coment&pl=${exercicio.planejamento}&d=${exercicio.dia}&i=${exercicio.item}&coment=${comentario}`;
+    return this.http.post(`${this.uri}/treino/musculacao/index.php`, queryString, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+  }
+
+  
   /*exist() {
     this.get().then(res => {
       console.log('resultado >>> ', res);

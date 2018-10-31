@@ -1,0 +1,46 @@
+<!--
+  Generated template for the FichaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Ficha de treino</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div id="perfil-aluno" padding>
+
+    <img src="{{ user.image }}" />
+
+    <span>Aluno: {{ user.name }}</span><br>
+    <small>Apelido: {{ user.alias }}</small>
+  </div>
+  <br>
+  <ion-item-group *ngFor="let treino of treinos">
+    <ion-list no-lines>
+      <ion-item-divider color="light">
+        <h2>{{treino.nomeDia}}</h2>
+      </ion-item-divider>
+
+      <ion-item *ngFor="let exercicio of treino.exercicios">
+        {{ exercicio.nomeExercicio }} - {{ exercicio.nomeCarga }} <br>
+        <small>Repetição:</small> {{ exercicio.nomeRepeticao }} <br>
+        <small>Intervalo:</small> {{ exercicio.nomeIntervalo }} <br>
+        <p *ngIf="exercicio.observacao">Obs.: {{ exercicio.observacao }}</p>
+        <p>Coment.: {{ exercicio.comentarioAluno }}
+          <button ion-button icon-only small float-right (click)="showForm(exercicio)">
+            <ion-icon name="send"></ion-icon>
+          </button></p>
+      </ion-item>
+    </ion-list>
+  </ion-item-group>
+</ion-content>

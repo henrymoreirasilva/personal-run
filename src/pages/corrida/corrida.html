@@ -16,7 +16,17 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content >
+  <div id="perfil-aluno" padding>
+
+    <img src="{{ user.image }}" />
+
+    <span>Aluno: {{ user.name }}</span><br>
+    <small>Apelido: {{ user.alias }}</small>
+
+
+  </div>
+  <br>
   <div class="calendar-header">
     <ion-row class="calendar-month">
       <ion-col col-2 (click)="goToLastMonth()">
@@ -24,7 +34,7 @@
       </ion-col>
       <ion-col col-6>{{currentMonth}}/{{currentYear}}</ion-col>
 
-      <ion-col col-2 (click)="goToday()">
+      <ion-col col-2 (click)="goToToday()">
         <ion-icon name="calendar"></ion-icon>
       </ion-col>
       <ion-col col-2 (click)="goToNextMonth()">
@@ -45,24 +55,29 @@
       </ion-row>
       <ion-row class="calendar-date">
         <ion-col col-1 *ngFor="let lastDay of daysInLastMonth" class="last-month">{{lastDay}}</ion-col>
-        <ion-col col-1 *ngFor="let day of daysInThisMonth" (click)="clickDay(day)" [class.currentDate]="currentDate == day" [class.selectedDate]="day == selectedDate.day">{{ day }}</ion-col>
+        <ion-col col-1 *ngFor="let day of daysInThisMonth" (click)="clickDay(day)" [class.currentDate]="currentDate == day"
+          [class.selectedDate]="day == selectedDate.day">{{ day }}
+          <span *ngIf="diaPossuiEvento(day)" class="selectedDate">&bull;</span>
+        </ion-col>
         <ion-col col-1 *ngFor="let nextDay of daysInNextMonth" class="next-month">{{nextDay}}</ion-col>
       </ion-row>
     </ion-grid>
   </div>
+  <div *ngIf="eventos.length">
+    <hr>
   <h1>
-      Treino para {{ selectedDate.day == currentDate?'hoje':'o dia ' + selectedDate.day  }}
- </h1>
+    Treino para {{ selectedDate.day == currentDate?'hoje':'o dia ' + selectedDate.day }}
+  </h1>
   <ion-list>
-
     <ion-item *ngFor="let evento of eventos">
       <h2>{{ evento.horaInicio }} até {{ evento.horaTermino }}</h2>
       <h3>{{ evento.descricao }}</h3>
       <p>{{ evento.observacao }}
-          <button ion-button icon-only small float-right (click)="showForm(evento)">
-              <ion-icon name="send"></ion-icon>
-            </button>
+        <button ion-button icon-only small float-right (click)="showForm(evento)">
+          <ion-icon name="send"></ion-icon>
+        </button>
       </p>
     </ion-item>
   </ion-list>
+</div>
 </ion-content>

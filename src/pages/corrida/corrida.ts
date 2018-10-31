@@ -28,12 +28,15 @@ export class CorridaPage {
   currentYear: any;
   currentDate: any;
   selectedDate: any;
+  diasComEvento: Array<any> = new Array();
 
   corrida: any;
   eventos: any;
+  user: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider, public modalController: ModalController) {
     this.corrida = this.navParams.get('corrida');
+    this.user = this.navParams.get('user');
     this.date = new Date();
   }
 
@@ -82,6 +85,7 @@ export class CorridaPage {
     var nextNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth() + 2, 0).getDate();
     for (var i = 0; i < (6 - lastDayThisMonth); i++) {
       this.daysInNextMonth.push(i + 1);
+      
     }
     var totalDays = this.daysInLastMonth.length + this.daysInThisMonth.length + this.daysInNextMonth.length;
     if (totalDays < 36) {
@@ -91,6 +95,10 @@ export class CorridaPage {
     }
 
     this.selectedDate = { 'day': this.currentDate, 'month': this.currentMonthNum, 'year': this.currentYear };
+
+    this.clickDay(this.currentDate);
+
+    this.getDiasComEvento();
   }
 
   goToLastMonth() {
@@ -109,6 +117,7 @@ export class CorridaPage {
   }
 
   clickDay(day) {
+    this.eventos = [];
     this.selectedDate = { 'day': day, 'month': this.currentMonthNum, 'year': this.currentYear };
     let date: string = this.currentYear + '-' + this.currentMonthNum + '-' + day;
     this.userProvider.getCorridaDia(this.corrida.planejamento, date).subscribe((res: any) => {
@@ -121,11 +130,21 @@ export class CorridaPage {
     modal.onDidDismiss(res => {
       if (res.error) {
 
-      } else {
+      } else if (res.data.observacao) {
         evento.observacao = res.data.observacao;
       }
 
     });
     modal.present();
+  }
+
+  getDiasComEvento() {
+    this.userProvider.getDiasComEvento(this.corrida.planejamento, this.currentMonthNum, this.currentYear).subscribe((res: any) => {
+      this.diasComEvento = res.data;
+    })
+  }
+
+  diaPossuiEvento(dia) {
+    return this.diasComEvento.indexOf(`${dia}`) > -1;
   }
 }
