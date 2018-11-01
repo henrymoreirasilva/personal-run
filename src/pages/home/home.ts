@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user';
+import { CadastroPage } from '../cadastro/cadastro';
 
 @Component({
   selector: 'page-home',
@@ -10,7 +11,7 @@ export class HomePage {
   userLogged: any;
   formLogin: any = {id:'', name:'', alias:'', image:'', password:''};
 
-  constructor(public navCtrl: NavController, public userProvider: UserProvider) {
+  constructor(public navCtrl: NavController, public userProvider: UserProvider, public modalController: ModalController) {
 
   }
 
@@ -45,6 +46,7 @@ export class HomePage {
 
   logout() {
     this.userProvider.remove('user');
+    this.userProvider.remove('planos');
     this.formLogin.password = '';
     this.userLogged = null;
   }
@@ -53,5 +55,18 @@ export class HomePage {
     this.userProvider.getPlanos(id).subscribe((res: any) => {
       this.userProvider.create('planos', res.data);
     })
+  }
+
+  showFormCadastro() {
+    const modal = this.modalController.create(CadastroPage, {'user': this.userLogged});
+    modal.onDidDismiss(res => {
+      if (res.error) {
+
+      } else if (res.data) {
+        this.userLogged = res.data;
+      }
+
+    });
+    modal.present();
   }
 }

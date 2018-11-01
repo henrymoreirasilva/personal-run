@@ -65,7 +65,13 @@ export class UserProvider {
     return this.http.post(`${this.uri}/treino/musculacao/index.php`, queryString, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
   }
 
-  
+  updateCadastro(user) {
+    let queryString = Object.keys(user).map(key => key + '=' + user[key]).join('&');    // https://howchoo.com/g/nwywodhkndm/how-to-turn-an-object-into-query-string-parameters-in-javascript
+    queryString += '&req=cad';
+    //console.log(queryString);
+    return this.http.post(`${this.uri}/treino/aluno/index.php`, queryString, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+  }
+
   /*exist() {
     this.get().then(res => {
       console.log('resultado >>> ', res);

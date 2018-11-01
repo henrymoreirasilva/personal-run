@@ -33,12 +33,14 @@ page-corrida {
         background-color: map-get($colors, secundary);
         border-radius: 30px;
       }
+      .eventDay {color: map-get($colors, danger); font-weight: bold}
       .selectedDate {
         color: map-get($colors, secondary);
       }
       .unselected-date {
         border: none;
       }
+      
       .calendar-body {
         .grid {
           padding: 0;

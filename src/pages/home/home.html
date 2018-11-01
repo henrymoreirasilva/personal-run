@@ -32,17 +32,21 @@
   </ion-card>
 
   <ion-card *ngIf="userLogged">
-
-    <ion-card-header>
-      Aluno: {{ userLogged.name }}
-    </ion-card-header>
-
     <ion-card-content>
       <div id="user-perfil">
-        <img src="{{userLogged.image }}" class="user-image" />
-        <br />
-        <em>{{ userLogged.alias }}</em>
+          <img src="{{userLogged.image }}" class="user-image" />
+        <h2>Aluno: {{ userLogged.name }}</h2>
+
+        <p>
+          Apelido: {{ userLogged.alias }} <br>
+          Assinatura: {{ userLogged.assinatura }} <br>
+          Data de nascimento: {{ userLogged.birth }} <br>
+          Fone 1: {{ userLogged.phone1 }} <br>
+          Fone 2: {{ userLogged.phone2 }} <br>
+          Profissão: {{ userLogged.profession }}
+        </p>
       </div>
+      <button (click)="showFormCadastro()" ion-button small color="primary">Editar</button>
       <button (click)="logout()" ion-button small color="danger">Sair</button>
     </ion-card-content>
 
