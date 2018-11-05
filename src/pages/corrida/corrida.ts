@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user';
 import { ModalController } from 'ionic-angular';
 import { ComentarioEventoPage } from '../comentario-evento/comentario-evento';
@@ -82,7 +82,7 @@ export class CorridaPage {
     }
 
     var lastDayThisMonth = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDay();
-    var nextNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth() + 2, 0).getDate();
+    //var nextNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth() + 2, 0).getDate();
     for (var i = 0; i < (6 - lastDayThisMonth); i++) {
       this.daysInNextMonth.push(i + 1);
       

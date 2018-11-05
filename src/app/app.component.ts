@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { UserProvider } from '../providers/user/user';
 import { CorridaPage } from '../pages/corrida/corrida';
 import { FichaPage } from '../pages/ficha/ficha';
+import { MessagePage } from '../pages/message/message';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,7 +17,7 @@ export class MyApp {
 
   rootPage: any = HomePage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
 
   planos: any;
   user: any;
@@ -28,7 +29,8 @@ export class MyApp {
     this.pages = [
       { title: 'Início', component: HomePage },
       { title: 'Corrida', component: CorridaPage },
-      { title: 'Musculação', component: FichaPage }
+      { title: 'Musculação', component: FichaPage },
+      { title: 'Mensagem', component: MessagePage }
     ];
 
   }
@@ -40,9 +42,7 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      this.userProvider.get('user').then(res => {
-        this.user = res;
-      })
+
     });
   }
 
@@ -51,20 +51,39 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
 
     if (page.title == 'Corrida') {
-      this.userProvider.get('planos').then((res) => {
-        this.planos =  res;
-        this.nav.setRoot(page.component, {'corrida': this.planos.corrida, 'user': this.user });
+      this.userProvider.get('user').then(res => {
+        this.user = res;
+
+        this.userProvider.get('planos').then((res) => {
+          this.planos = res;
+          this.nav.setRoot(page.component, { 'corrida': this.planos.corrida, 'user': this.user });
+        })
+
       })
+
+
     } else if (page.title == 'Musculação') {
-      this.userProvider.get('planos').then((res) => {
-        this.planos =  res;
-        this.nav.setRoot(page.component, {'musculacao': this.planos.musculacao, 'user': this.user });
+      this.userProvider.get('user').then(res => {
+        this.user = res;
+
+        this.userProvider.get('planos').then((res) => {
+          this.planos = res;
+
+          this.nav.setRoot(page.component, { 'musculacao': this.planos.musculacao, 'user': this.user });
+        })
       })
+
+    } else if (page.title == 'Mensagem') {
+      this.userProvider.get('user').then(res => {
+        this.user = res;
+        this.nav.setRoot(page.component, { 'user': this.user });
+      })
+
     } else {
       this.nav.setRoot(page.component);
     }
 
 
-    
+
   }
 }

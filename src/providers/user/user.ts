@@ -68,7 +68,11 @@ export class UserProvider {
   updateCadastro(user) {
     let queryString = Object.keys(user).map(key => key + '=' + user[key]).join('&');    // https://howchoo.com/g/nwywodhkndm/how-to-turn-an-object-into-query-string-parameters-in-javascript
     queryString += '&req=cad';
-    //console.log(queryString);
+    return this.http.post(`${this.uri}/treino/aluno/index.php`, queryString, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+  }
+
+  sendMessage(user, message) {
+    let queryString = `req=send&name=${user.name}&email=${user.email}&image=${user.image}&message=${message}`;
     return this.http.post(`${this.uri}/treino/aluno/index.php`, queryString, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
   }
 

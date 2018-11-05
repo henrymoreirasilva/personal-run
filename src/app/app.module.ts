@@ -15,6 +15,7 @@ import { ComentarioEventoPage } from '../pages/comentario-evento/comentario-even
 import { FichaPage } from '../pages/ficha/ficha';
 import { ComentarioExercicioPage } from '../pages/comentario-exercicio/comentario-exercicio';
 import { CadastroPage } from '../pages/cadastro/cadastro';
+import { MessagePage } from '../pages/message/message';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CadastroPage } from '../pages/cadastro/cadastro';
     ComentarioEventoPage,
     FichaPage,
     ComentarioExercicioPage,
-    CadastroPage
+    CadastroPage,
+    MessagePage
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ import { CadastroPage } from '../pages/cadastro/cadastro';
     ComentarioEventoPage,
     FichaPage,
     ComentarioExercicioPage,
-    CadastroPage
+    CadastroPage,
+    MessagePage
   ],
   providers: [
     StatusBar,

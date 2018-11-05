@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
-import { ComentarioEventoPage } from '../comentario-evento/comentario-evento';
+//import { analyzeAndValidateNgModules } from '@angular/compiler';
+//import { ComentarioEventoPage } from '../comentario-evento/comentario-evento';
 import { ComentarioExercicioPage } from '../comentario-exercicio/comentario-exercicio';
-import { ComentarioExercicioPageModule } from '../comentario-exercicio/comentario-exercicio.module';
+//import { ComentarioExercicioPageModule } from '../comentario-exercicio/comentario-exercicio.module';
 
 /**
  * Generated class for the FichaPage page.
@@ -26,6 +26,7 @@ export class FichaPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider, public modalController: ModalController) {
     this.musculacao = this.navParams.get('musculacao');
     this.user = this.navParams.get('user');
+    
   }
 
   ionViewDidLoad() {

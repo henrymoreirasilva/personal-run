@@ -16,6 +16,7 @@ import { UserProvider } from '../../providers/user/user';
 })
 export class CadastroPage {
   user: any;
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewController: ViewController, public userProvider: UserProvider) {
     this.user = this.navParams.get('user');
   }
@@ -30,7 +31,14 @@ export class CadastroPage {
 
   updateCadastro() {
     this.userProvider.updateCadastro(this.user).subscribe((res: any) => {
-      this.dismiss(res);
+      //console.log('update', res);
+      if (!res.error) {
+        this.userProvider.remove('user');
+        this.userProvider.create('user', res.data).then(() => {
+          this.dismiss(res);
+        })
+      }
+      
     });
 
     /*

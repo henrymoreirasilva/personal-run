@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -36,10 +36,10 @@
         <small>Repetição:</small> {{ exercicio.nomeRepeticao }} <br>
         <small>Intervalo:</small> {{ exercicio.nomeIntervalo }} <br>
         <p *ngIf="exercicio.observacao">Obs.: {{ exercicio.observacao }}</p>
-        <p>Coment.: {{ exercicio.comentarioAluno }}
-          <button ion-button icon-only small float-right (click)="showForm(exercicio)">
+        <p>Coment.: {{ exercicio.comentarioAluno }} </p>
+        <button ion-button icon-only small (click)="showForm(exercicio)">
             <ion-icon name="send"></ion-icon>
-          </button></p>
+          </button>
       </ion-item>
     </ion-list>
   </ion-item-group>

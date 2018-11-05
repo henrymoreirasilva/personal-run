@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-buttons start>
       <button ion-button (click)="dismiss(user)">Cancelar</button>
     </ion-buttons>
@@ -29,10 +29,9 @@
       <ion-input type="text" [(ngModel)]="user.alias"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Data de nascimento</ion-label>
-      <ion-input type="date" [(ngModel)]="user.birth"></ion-input>
-    </ion-item>
-
+        <ion-label floating>E-mail</ion-label>
+        <ion-input type="text" [(ngModel)]="user.email"></ion-input>
+      </ion-item>
     <ion-item>
       <ion-label floating>Fone 1</ion-label>
       <ion-input type="tel" [(ngModel)]="user.phone1"></ion-input>
@@ -42,11 +41,18 @@
       <ion-label floating>Fone 2</ion-label>
       <ion-input type="tel" [(ngModel)]="user.phone2"></ion-input>
     </ion-item>
-
+    <ion-item>
+      <ion-label floating>Fone 3</ion-label>
+      <ion-input type="tel" [(ngModel)]="user.phone3"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label floating>Data de nascimento</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="user.birth"></ion-datetime>
+      </ion-item>
     <ion-item>
       <ion-label floating>Profissão</ion-label>
       <ion-input type="tel" [(ngModel)]="user.profession"></ion-input>
     </ion-item>
-    <button ion-button small color="primary" (click)="updateCadastro()">Enviar</button>
+    <button ion-button small color="primary" (click)="updateCadastro()">Salvar</button>
   </ion-list>
 </ion-content>

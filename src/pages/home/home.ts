@@ -9,7 +9,7 @@ import { CadastroPage } from '../cadastro/cadastro';
 })
 export class HomePage {
   userLogged: any;
-  formLogin: any = {id:'', name:'', alias:'', image:'', password:''};
+  formLogin: any = {id:'', name:'', alias:'', image:'', password:'09781628626', user: 'felipe@zoomwi.com.br'};
 
   constructor(public navCtrl: NavController, public userProvider: UserProvider, public modalController: ModalController) {
 
@@ -60,9 +60,11 @@ export class HomePage {
   showFormCadastro() {
     const modal = this.modalController.create(CadastroPage, {'user': this.userLogged});
     modal.onDidDismiss(res => {
+      
       if (res.error) {
 
       } else if (res.data) {
+        console.log('atribuir', res.data);
         this.userLogged = res.data;
       }
 
