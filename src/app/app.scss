@@ -14,3 +14,17 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.item-md p {color:rgb(82, 9, 30)}
+.item-md-light, .item-divider-md-light {background-color: #F58A50;color:rgb(82, 9, 30)}
+.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {border-bottom-color:#FE7D00;box-shadow:inset 0 -1px 0 0 #FE7D00}
+.label-md[floating] {color:#EC7199}
+.list-md .item-block .item-inner {border-bottom-color:#FE7D00}
+
+.item-ios p {color:rgb(82, 9, 30)}
+.item-ios-light, .item-divider-ios-light {background-color: #F58A50;color:rgb(82, 9, 30)}
+.item-ios.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-ios.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {border-bottom-color:#FE7D00;box-shadow:inset 0 -1px 0 0 #FE7D00}
+.label-ios[floating] {color:#EC7199}
+.list-ios .item-block .item-inner {border-bottom-color:#FE7D00}
+
+#logo-prun-title {position: absolute;right: 5px;top: 0px}

@@ -55,7 +55,7 @@ page-corrida {
         .calendar-weekday {
           font-weight: bold;
 
-          background-color: map-get($colors, light);
+          background-color: map-get($colors, secondary);
         }
         .calendar-date {
           border-top: solid 1px map-get($colors, light);
