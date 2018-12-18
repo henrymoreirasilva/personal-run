@@ -31,7 +31,7 @@ export class CadastroPage {
 
   updateCadastro() {
     this.userProvider.updateCadastro(this.user).subscribe((res: any) => {
-      //console.log('update', res);
+      console.log('update', res);
       if (!res.error) {
         this.userProvider.remove('user');
         this.userProvider.create('user', res.data).then(() => {
