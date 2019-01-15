@@ -41,15 +41,23 @@ $app-direction: ltr;
   dark:       #222
 );*/
 
-$colors: (
+/*$colors: (
   primary:    #BA1A4D,
   secondary:  #2BADA7,
   terciary:   #EC7199,
   danger:     #EF453F,
   light:      #E0E0E0,
   dark:       #1C1C1C
-);
+);*/
 
+$colors: (
+  primary:    #45B0B1,
+  secondary:  #FD5513,
+  terciary:   #8DBF79,
+  danger:     #EF453F,
+  light:      #E0E0E0,
+  dark:       #1C1C1C
+);
 
 
 
@@ -98,41 +106,3 @@ $colors: (
 @import "roboto";
 @import "noto-sans";
 
-$action-sheet-wp-background:  (
-  rgb(82, 9, 30)
-);
-
-$alert-ios-input-background-color: ($action-sheet-wp-background);
-$alert-wp-backdrop-background: ($action-sheet-wp-background);
-$background-color: ($action-sheet-wp-background);
-$card-md-title-text-color: ($action-sheet-wp-background);
-$card-wp-title-text-color: ($action-sheet-wp-background);
-$item-md-divider-background: ($action-sheet-wp-background);
-$item-wp-divider-background: ($action-sheet-wp-background);
-$loading-wp-text-color: ($action-sheet-wp-background);
-$range-ios-knob-background-color: ($action-sheet-wp-background);
-$searchbar-ios-input-background-color: ($action-sheet-wp-background);
-$searchbar-md-input-background-color: ($action-sheet-wp-background);
-$searchbar-wp-input-background-color: ($action-sheet-wp-background);
-$text-color: #fff;
-$list-background-color:#FEAF92;
-/*$toast-ios-title-color: ($action-sheet-wp-background);
-$toast-md-title-color: ($action-sheet-wp-background);
-$toast-wp-button-color: ($action-sheet-wp-background);
-$toast-wp-title-color: ($action-sheet-wp-background);
-$toolbar-md-text-color: ($action-sheet-wp-background);
-$toolbar-wp-text-color: ($action-sheet-wp-background);
-$alert-md-input-text-color: ($text-color);
-$alert-wp-button-text-color: ($text-color);
-$alert-wp-input-text-color: ($text-color);
-$alert-wp-message-text-color: ($text-color);
-$backdrop-color: ($action-sheet-wp-background);
-$background-color: ($backdrop-color);
-$content-ios-transition-background: ($backdrop-color);
-$list-border-color: rgb(100, 85, 90);
-$loading-ios-text-color: ($text-color);
-$loading-wp-background: ($text-color);
-$range-md-tick-background-color: ($text-color);
-$refresher-icon-color: ($text-color);
-$refresher-text-color: ($text-color);
-$searchbar-ios-input-text-color: ($text-color);*/

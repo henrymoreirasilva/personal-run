@@ -10,7 +10,8 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Corrida<img src="assets/imgs/logoprun.png" id="logo-prun-title" /></ion-title>
+    <ion-title>Corrida</ion-title>
+    <img src="assets/imgs/logoprun.png" id="logo-prun-title" />
   </ion-navbar>
 </ion-header>
 
@@ -19,13 +20,13 @@
   <div id="perfil-aluno">
 
     <img src="{{ user.image }}" />
-
     <span>Aluno: {{ user.name }}</span><br>
-    <small>Apelido: {{ user.alias }}</small>
-
-
+    <small>Apelido: {{ user.alias }}</small>  
   </div>
-  <br>
+  <div style="text-align: right">
+  <button (click)="showNomenclaturas()" ion-button small><ion-icon name="information-circle"></ion-icon></button>
+    <button (click)="showZonasTreinamento()" ion-button small><ion-icon name="heart"></ion-icon></button>
+    <button (click)="showPaceProva()" ion-button small><ion-icon name="timer"></ion-icon></button></div>
   <div class="calendar-header">
     <ion-row class="calendar-month">
       <ion-col col-2 (click)="goToLastMonth()">
@@ -71,7 +72,7 @@
       <h2>{{ evento.horaInicio }} até {{ evento.horaTermino }}</h2>
       <h3>{{ evento.descricao }}</h3>
       <p>{{ evento.observacao }}</p>
-      <button ion-button icon-only small (click)="showForm(evento)">
+      <button ion-button float-right (click)="showForm(evento)">
           <ion-icon name="send"></ion-icon>
         </button>
     </ion-item>

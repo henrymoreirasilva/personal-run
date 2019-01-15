@@ -18,8 +18,10 @@
 
 <ion-content padding>
   <ion-list>
+      <ion-item>
       <img src="{{ user.image }}" class="user-image" />
-      <br>
+      
+      <!--button ion-button small color="primary" float-right  (click)="takeFoto()">Foto</button--></ion-item>
     <ion-item>
       <ion-label floating>Nome</ion-label>
       <ion-input type="text" [(ngModel)]="user.name"></ion-input>

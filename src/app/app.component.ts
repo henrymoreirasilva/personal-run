@@ -27,7 +27,7 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Início', component: HomePage },
+      { title: 'Cadastro', component: HomePage },
       { title: 'Corrida', component: CorridaPage },
       { title: 'Musculação', component: FichaPage },
       { title: 'Mensagem', component: MessagePage }
@@ -56,7 +56,7 @@ export class MyApp {
 
         this.userProvider.get('planos').then((res) => {
           this.planos = res;
-          this.nav.setRoot(page.component, { 'corrida': this.planos.corrida, 'user': this.user });
+          this.nav.setRoot(page.component, { 'planos': this.planos, 'user': this.user });
         })
 
       })
@@ -69,7 +69,7 @@ export class MyApp {
         this.userProvider.get('planos').then((res) => {
           this.planos = res;
 
-          this.nav.setRoot(page.component, { 'musculacao': this.planos.musculacao, 'user': this.user });
+          this.nav.setRoot(page.component, { 'planos': this.planos, 'user': this.user });
         })
       })
 

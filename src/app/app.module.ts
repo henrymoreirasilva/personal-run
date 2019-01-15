@@ -3,6 +3,8 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http';
+import { Camera } from '@ionic-native/camera';
+import { FilePath } from '@ionic-native/file-path';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -16,6 +18,10 @@ import { FichaPage } from '../pages/ficha/ficha';
 import { ComentarioExercicioPage } from '../pages/comentario-exercicio/comentario-exercicio';
 import { CadastroPage } from '../pages/cadastro/cadastro';
 import { MessagePage } from '../pages/message/message';
+import { MensagemDoTreinoPage } from '../pages/mensagem-do-treino/mensagem-do-treino';
+import { CorridaNomenclaturasPage } from '../pages/corrida-nomenclaturas/corrida-nomenclaturas';
+import { ZonasDeTreinamentoPage } from '../pages/zonas-de-treinamento/zonas-de-treinamento';
+import { PaceDeProvaPage } from '../pages/pace-de-prova/pace-de-prova';
 
 @NgModule({
   declarations: [
@@ -26,7 +32,11 @@ import { MessagePage } from '../pages/message/message';
     FichaPage,
     ComentarioExercicioPage,
     CadastroPage,
-    MessagePage
+    MessagePage,
+    MensagemDoTreinoPage,
+    CorridaNomenclaturasPage,
+    ZonasDeTreinamentoPage,
+    PaceDeProvaPage
   ],
   imports: [
     BrowserModule,
@@ -43,13 +53,19 @@ import { MessagePage } from '../pages/message/message';
     FichaPage,
     ComentarioExercicioPage,
     CadastroPage,
-    MessagePage
+    MessagePage,
+    MensagemDoTreinoPage,
+    CorridaNomenclaturasPage,
+    ZonasDeTreinamentoPage,
+    PaceDeProvaPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserProvider
+    UserProvider,
+    FilePath,
+    Camera
   ]
 })
 export class AppModule {}

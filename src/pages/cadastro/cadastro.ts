@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, Platform } from 'ionic-angular';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { FilePath } from '@ionic-native/file-path';
+
 import { UserProvider } from '../../providers/user/user';
 
 /**
@@ -17,7 +20,15 @@ import { UserProvider } from '../../providers/user/user';
 export class CadastroPage {
   user: any;
   
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewController: ViewController, public userProvider: UserProvider) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public viewController: ViewController, 
+    public userProvider: UserProvider, 
+    public filePath: FilePath,
+    private camera: Camera,
+    public platform: Platform) {
+
     this.user = this.navParams.get('user');
   }
 
@@ -31,7 +42,6 @@ export class CadastroPage {
 
   updateCadastro() {
     this.userProvider.updateCadastro(this.user).subscribe((res: any) => {
-      console.log('update', res);
       if (!res.error) {
         this.userProvider.remove('user');
         this.userProvider.create('user', res.data).then(() => {
@@ -42,15 +52,41 @@ export class CadastroPage {
     });
 
     /*
-alias: "felipinho"
-birth: "00/00/0000"
-id: "129"
-image: "http://aprun.web7053.uni5.net/imagens/fotosClientes/f129.jpg"
-name: "FELIPE"
-phone1: ""
-phone2: "(34) 3332-0819"
-profession: ""
+      alias: "felipinho"
+      birth: "00/00/0000"
+      id: "129"
+      image: "http://aprun.web7053.uni5.net/imagens/fotosClientes/f129.jpg"
+      name: "FELIPE"
+      phone1: ""
+      phone2: "(34) 3332-0819"
+      profession: ""
     */
   }
 
+  takeFoto(source: number = 1, mediaType: number = 1) {
+    const options: CameraOptions = {
+      quality: 100,
+      mediaType: mediaType,
+      sourceType: source,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG
+    }
+
+    this.camera.getPicture(options)
+    .then((imageData) => {
+      console.log(this.platform.getPlatformConfig);
+      if (source == 0 && this.platform.is('android')) {
+        this.filePath.resolveNativePath(imageData)
+        .then((filePath) => {
+          this.user.image = filePath;
+        });
+      } else {
+        this.user.image = imageData;
+      }
+      
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
 }

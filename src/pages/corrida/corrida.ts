@@ -3,7 +3,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user';
 import { ModalController } from 'ionic-angular';
 import { ComentarioEventoPage } from '../comentario-evento/comentario-evento';
-
+import { MensagemDoTreinoPage } from '../mensagem-do-treino/mensagem-do-treino';
+import { CorridaNomenclaturasPage } from '../corrida-nomenclaturas/corrida-nomenclaturas'
+import { ZonasDeTreinamentoPage } from '../zonas-de-treinamento/zonas-de-treinamento';
+import { PaceDeProvaPage } from '../pace-de-prova/pace-de-prova';
 
 /**
  * Generated class for the CorridaPage page.
@@ -30,30 +33,27 @@ export class CorridaPage {
   selectedDate: any;
   diasComEvento: Array<any> = new Array();
 
+  planos: any;
   corrida: any;
   eventos: any;
   user: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider, public modalController: ModalController) {
-    this.corrida = this.navParams.get('corrida');
+    this.planos = this.navParams.get('planos');
+    this.corrida = this.planos.corrida;
     this.user = this.navParams.get('user');
     this.date = new Date();
+
   }
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    /*this.userProvider.get('planos').then((res) => {
-      this.corrida =  res;
-      console.log(this.corrida);
-    })*/
-
     this.getDaysOfMonth();
   }
 
   ionViewDidLoad() {
-    //console.log('ionViewDidLoad CorridaPage');
-
+    if (this.corrida.descricao != '' && this.corrida.mensagemLida != 1) {
+      this.showMessage();
+    }
   }
 
   getDaysOfMonth() {
@@ -85,7 +85,7 @@ export class CorridaPage {
     //var nextNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth() + 2, 0).getDate();
     for (var i = 0; i < (6 - lastDayThisMonth); i++) {
       this.daysInNextMonth.push(i + 1);
-      
+
     }
     var totalDays = this.daysInLastMonth.length + this.daysInThisMonth.length + this.daysInNextMonth.length;
     if (totalDays < 36) {
@@ -126,7 +126,7 @@ export class CorridaPage {
   }
 
   showForm(evento) {
-    const modal = this.modalController.create(ComentarioEventoPage, {'evento': evento});
+    const modal = this.modalController.create(ComentarioEventoPage, { 'evento': evento });
     modal.onDidDismiss(res => {
       if (res.error) {
 
@@ -147,4 +147,35 @@ export class CorridaPage {
   diaPossuiEvento(dia) {
     return this.diasComEvento.indexOf(`${dia}`) > -1;
   }
+
+  showMessage() {
+    const modalMessage = this.modalController.create(MensagemDoTreinoPage, { 'corrida': this.corrida, 'musculacao': { descricao: '' } });
+    modalMessage.onDidDismiss(() => {
+      this.corrida.mensagemLida = 1;
+      this.userProvider.create('planos', this.planos);
+    });
+    modalMessage.present();
+  }
+
+  showNomenclaturas() {
+
+    const modalInfo1 = this.modalController.create(CorridaNomenclaturasPage);
+
+    modalInfo1.present();
+  }
+
+  showZonasTreinamento() {
+
+    const modalInfo2 = this.modalController.create(ZonasDeTreinamentoPage);
+
+    modalInfo2.present();
+  }
+
+  showPaceProva() {
+
+    const modalInfo3 = this.modalController.create(PaceDeProvaPage);
+
+    modalInfo3.present();
+  }
+
 }

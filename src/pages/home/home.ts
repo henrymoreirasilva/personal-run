@@ -9,7 +9,7 @@ import { CadastroPage } from '../cadastro/cadastro';
 })
 export class HomePage {
   userLogged: any;
-  formLogin: any = {id:'', name:'', alias:'', image:'', password:'09781628626', user: 'felipe@zoomwi.com.br'};
+  formLogin: any = {id:'', name:'', alias:'', image:'', password:'', user: ''};
 
   constructor(public navCtrl: NavController, public userProvider: UserProvider, public modalController: ModalController) {
 
@@ -21,10 +21,10 @@ export class HomePage {
     this.userLogged = null;
     this.userProvider.get('user').then((res) => {
       this.userLogged = res;
-
       if (this.userLogged) {
         this.getPlanos(this.userLogged.id);
       }
+
     });
   }
 
@@ -37,8 +37,10 @@ export class HomePage {
           console.log(res.msgerror);
         } else {
           this.userLogged = res.data;
+          
           this.userProvider.create('user', this.userLogged);
           this.getPlanos(this.userLogged.id);
+          
         }
       }
     })
@@ -71,4 +73,5 @@ export class HomePage {
     });
     modal.present();
   }
+  
 }

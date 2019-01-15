@@ -10,7 +10,7 @@ import { Storage } from "@ionic/storage";
 */
 @Injectable()
 export class UserProvider {
-  uri: string = 'http://aprun.web7053.uni5.net/api';
+  uri: string = 'https://www.aprun.com.br/api';
 
   constructor(public http: HttpClient, public storage: Storage) {
     //console.log('Hello UserProvider Provider');
@@ -74,6 +74,11 @@ export class UserProvider {
   sendMessage(user, message) {
     let queryString = `req=send&name=${user.name}&email=${user.email}&image=${user.image}&message=${message}`;
     return this.http.post(`${this.uri}/treino/aluno/index.php`, queryString, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+  }
+
+  setMensagemLida(evento) {
+    let queryString = `req=setleituramsg&evento=${evento}`;
+    return this.http.post(`${this.uri}/treino/index.php`, queryString, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
   }
 
   /*exist() {

@@ -10,9 +10,9 @@
       <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
         </button>
-    <ion-title>Mensagem<img src="assets/imgs/logoprun.png" id="logo-prun-title" /></ion-title>
+    <ion-title>Mensagem</ion-title>
+    <img src="assets/imgs/logoprun.png" id="logo-prun-title" />
   </ion-navbar>
-  <ion-title>Início</ion-title>
 </ion-header>
 
 
@@ -24,7 +24,7 @@
         <span>Aluno: {{ user.name }}</span><br>
         <small>Apelido: {{ user.alias }}</small>
       </div>
-      <br>
+      <p>Envie para nós suas opiniões, sugestões ou reclamações.</p>
     <ion-textarea placeholder="Mensagem" [(ngModel)]="mensagem" id="text-message"></ion-textarea>
     <button ion-button small color="primary" (click)="enviarMensagem()">Enviar</button>
     <p>{{retorno}}</p>

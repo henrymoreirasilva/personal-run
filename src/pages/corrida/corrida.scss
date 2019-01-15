@@ -1,6 +1,7 @@
 page-corrida {
-  #perfil-aluno {height: 50px}
-  #perfil-aluno img {width: 40px; border-radius: 3px; float: left; margin-right: 5px}
+  #perfil-aluno {height: 50px; }
+  #perfil-aluno img {width: 60px; border-radius: 3px; float: left; margin-right: 10px}
+  #perfil-aluno span {line-height: 13px;display: inline-block;vertical-align: middle;}
     [col-1] {
         -webkit-box-flex: 0;
         -webkit-flex: 0 0 8.33333%;
@@ -8,10 +9,12 @@ page-corrida {
         flex: 0 0 14.285714285714286%;
         width: 14.285714285714286%;
         max-width: 14.285714285714286%;
+        border-radius: 15%
       }
       .col {
         text-align: center;
-        padding: 10px 3px;
+        padding: 10px 0px;
+        
       }
       .last-month, .next-month {
         color: map-get($colors, light);
@@ -19,7 +22,7 @@ page-corrida {
 
       .currentDate {
         font-weight: bold;
-        background-color: map-get($colors, primary);
+        background-color: map-get($colors, secondary);
         color: map-get($colors, light);
       }
       .calendar-header {
@@ -35,7 +38,8 @@ page-corrida {
       }
       .eventDay {color: map-get($colors, danger); font-weight: bold}
       .selectedDate {
-        color: map-get($colors, secondary);
+        color: map-get($colors, light);
+        background-color: map-get($colors, terciary);
       }
       .unselected-date {
         border: none;
@@ -55,7 +59,7 @@ page-corrida {
         .calendar-weekday {
           font-weight: bold;
 
-          background-color: map-get($colors, danger);
+          background-color: map-get($colors, light);
         }
         .calendar-date {
           border-top: solid 1px map-get($colors, light);

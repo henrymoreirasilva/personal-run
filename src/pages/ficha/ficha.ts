@@ -4,6 +4,7 @@ import { UserProvider } from '../../providers/user/user';
 //import { analyzeAndValidateNgModules } from '@angular/compiler';
 //import { ComentarioEventoPage } from '../comentario-evento/comentario-evento';
 import { ComentarioExercicioPage } from '../comentario-exercicio/comentario-exercicio';
+import { MensagemDoTreinoPage } from '../mensagem-do-treino/mensagem-do-treino';
 //import { ComentarioExercicioPageModule } from '../comentario-exercicio/comentario-exercicio.module';
 
 /**
@@ -19,18 +20,22 @@ import { ComentarioExercicioPage } from '../comentario-exercicio/comentario-exer
   templateUrl: 'ficha.html',
 })
 export class FichaPage {
+  planos: any;
   musculacao: any;
   user: any;
   treinos: Array<any> = new Array;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider, public modalController: ModalController) {
-    this.musculacao = this.navParams.get('musculacao');
+    this.planos = this.navParams.get('planos');
+    this.musculacao = this.planos.musculacao;
     this.user = this.navParams.get('user');
-    
+
   }
 
   ionViewDidLoad() {
-    //console.log('ionViewDidLoad FichaPage');
+    if (this.musculacao.descricao != '' && this.musculacao.mensagemLida != 1) {
+      this.showMessage();
+    }
   }
 
   ngOnInit(): void {
@@ -45,7 +50,7 @@ export class FichaPage {
       let indice: number;
       res.data.forEach(element => {
         if (diaAtual != element.dia) {
-          indice = this.treinos.push({'nomeDia': element.nomeDia, 'exercicios': []});
+          indice = this.treinos.push({ 'nomeDia': element.nomeDia, 'exercicios': [] });
           indice--;
 
           diaAtual = element.dia;
@@ -61,16 +66,16 @@ export class FichaPage {
           'planejamento': element.planejamento,
           'dia': element.dia,
           'item': element.item
-          
+
         });
 
-        
+
       });
     })
   }
 
   showForm(exercicio) {
-    const modal = this.modalController.create(ComentarioExercicioPage, {'exercicio': exercicio});
+    const modal = this.modalController.create(ComentarioExercicioPage, { 'exercicio': exercicio });
     modal.onDidDismiss(res => {
       if (res.error) {
 
@@ -80,6 +85,15 @@ export class FichaPage {
 
     });
     modal.present();
+  }
+
+  showMessage() {
+    const modalMessage = this.modalController.create(MensagemDoTreinoPage, { 'musculacao': this.musculacao, 'corrida': { descricao: '' } });
+    modalMessage.onDidDismiss(() => {
+      this.planos.musculacao.mensagemLida = 1;
+      this.userProvider.create('planos', this.planos);
+    });
+    modalMessage.present();
   }
 
 }
