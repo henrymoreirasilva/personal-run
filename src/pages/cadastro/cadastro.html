@@ -24,7 +24,7 @@
       <!--button ion-button small color="primary" float-right  (click)="takeFoto()">Foto</button--></ion-item>
     <ion-item>
       <ion-label floating>Nome</ion-label>
-      <ion-input type="text" [(ngModel)]="user.name"></ion-input>
+      <ion-input type="text" [(ngModel)]="user.name" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Apelido</ion-label>
@@ -32,11 +32,11 @@
     </ion-item>
     <ion-item>
         <ion-label floating>E-mail</ion-label>
-        <ion-input type="text" [(ngModel)]="user.email"></ion-input>
+        <ion-input type="email" [(ngModel)]="user.email" required></ion-input>
       </ion-item>
     <ion-item>
       <ion-label floating>Fone 1</ion-label>
-      <ion-input type="tel" [(ngModel)]="user.phone1"></ion-input>
+      <ion-input type="tel" [(ngModel)]="user.phone1" required></ion-input>
     </ion-item>
 
     <ion-item>
@@ -53,8 +53,11 @@
       </ion-item>
     <ion-item>
       <ion-label floating>Profissão</ion-label>
-      <ion-input type="tel" [(ngModel)]="user.profession"></ion-input>
+      <ion-input type="text" [(ngModel)]="user.profession" required></ion-input>
     </ion-item>
     <button ion-button small color="primary" (click)="updateCadastro()">Salvar</button>
   </ion-list>
+  <ion-label color="secondary">
+    {{ errorMsg }}
+  </ion-label>
 </ion-content>

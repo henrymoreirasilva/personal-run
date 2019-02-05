@@ -26,9 +26,11 @@
         <ion-item>
           <ion-input type="password" [(ngModel)]="formLogin.password" placeholder="Senha"></ion-input>
         </ion-item>
-
       </ion-list>
       <button ion-button small color="primary" (click)="login()">Entrar</button>
+      <ion-label color="secondary">
+        {{ msgErrorLogin }}
+      </ion-label>
     </ion-card-content>
 
   </ion-card>

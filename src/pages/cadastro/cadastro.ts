@@ -19,7 +19,7 @@ import { UserProvider } from '../../providers/user/user';
 })
 export class CadastroPage {
   user: any;
-  
+  errorMsg: string = '';
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -30,6 +30,8 @@ export class CadastroPage {
     public platform: Platform) {
 
     this.user = this.navParams.get('user');
+
+    this.errorMsg = '';
   }
 
   ionViewDidLoad() {
@@ -39,10 +41,12 @@ export class CadastroPage {
   dismiss(res) {
     this.viewController.dismiss(res);
   }
-
+ 
   updateCadastro() {
     this.userProvider.updateCadastro(this.user).subscribe((res: any) => {
-      if (!res.error) {
+      if (res.error) {
+        this.errorMsg = res.errorMsg;
+      } else {
         this.userProvider.remove('user');
         this.userProvider.create('user', res.data).then(() => {
           this.dismiss(res);

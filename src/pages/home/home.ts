@@ -10,9 +10,10 @@ import { CadastroPage } from '../cadastro/cadastro';
 export class HomePage {
   userLogged: any;
   formLogin: any = {id:'', name:'', alias:'', image:'', password:'', user: ''};
+  msgErrorLogin: string = '';
 
   constructor(public navCtrl: NavController, public userProvider: UserProvider, public modalController: ModalController) {
-
+    this.msgErrorLogin = '';
   }
 
   ngOnInit(): void {
@@ -31,17 +32,14 @@ export class HomePage {
   login() {
     this.userProvider.login(this.formLogin).subscribe((res: any) => {
       if (res.error) {
-        console.log(res.errormsg);
+        this.msgErrorLogin = res.errormsg;
       } else {
-        if (res.error) {
-          console.log(res.msgerror);
-        } else {
+
           this.userLogged = res.data;
           
           this.userProvider.create('user', this.userLogged);
           this.getPlanos(this.userLogged.id);
-          
-        }
+
       }
     })
   }
