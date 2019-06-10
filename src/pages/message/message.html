@@ -7,9 +7,9 @@
 <ion-header>
 
   <ion-navbar color="primary">
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Mensagem</ion-title>
     <img src="assets/imgs/logoprun.png" id="logo-prun-title" />
   </ion-navbar>
@@ -17,15 +17,34 @@
 
 
 <ion-content padding>
-    <div id="perfil-aluno">
+  <div id="perfil-aluno">
 
-        <img src="{{ user.image }}" />
-    
-        <span>Aluno: {{ user.name }}</span><br>
-        <small>Apelido: {{ user.alias }}</small>
-      </div>
-      <p>Envie para nós suas opiniões, sugestões ou reclamações.</p>
-    <ion-textarea placeholder="Mensagem" [(ngModel)]="mensagem" id="text-message"></ion-textarea>
-    <button ion-button small color="primary" (click)="enviarMensagem()">Enviar</button>
-    <p>{{retorno}}</p>
-</ion-content>
+    <img src="{{ user.image }}" />
+
+    <span>Aluno: {{ user.name }}</span><br>
+    <small>Apelido: {{ user.alias }}</small>
+  </div>
+  <p>Envie para nós suas opiniões, sugestões ou reclamações.</p>
+  <ion-textarea placeholder="Mensagem" [(ngModel)]="mensagem" id="text-message"></ion-textarea>
+  <button ion-button small color="primary" (click)="enviarMensagem()">Enviar</button>
+  <p>{{retorno}}</p>
+
+  <div id="central-mensagens" *ngIf="centralMensagens">
+    MENSAGENS PARA VOCÊ
+
+    <ion-item-group *ngFor="let centralMensagem of centralMensagens">
+
+      <ion-card id="card-{{ centralMensagem.id }}">
+        <ion-card-header >
+          <strong>{{centralMensagem.titulo}}</strong>
+          {{centralMensagem.data}}
+        </ion-card-header>
+
+        <ion-card-content>
+          {{ centralMensagem.mensagem }}
+        </ion-card-content>
+        <button ion-button small float-right color="primary" (click)="setLeituraCentralMensagens(centralMensagem.id)">Ok</button>
+      </ion-card>
+
+    </ion-item-group>
+  </div>

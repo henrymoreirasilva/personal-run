@@ -151,6 +151,7 @@ export class CorridaPage {
   showMessage() {
     const modalMessage = this.modalController.create(MensagemDoTreinoPage, { 'corrida': this.corrida, 'musculacao': { descricao: '' } });
     modalMessage.onDidDismiss(() => {
+      
       this.corrida.mensagemLida = 1;
       this.userProvider.create('planos', this.planos);
     });

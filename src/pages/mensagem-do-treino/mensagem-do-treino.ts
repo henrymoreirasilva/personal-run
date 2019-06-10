@@ -19,6 +19,7 @@ export class MensagemDoTreinoPage {
   musculacao: any;
   plano: number = 0;
 
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewController: ViewController, public userProvider: UserProvider) {
     this.corrida = this.navParams.get('corrida');
     this.musculacao = this.navParams.get('musculacao');
@@ -37,10 +38,15 @@ export class MensagemDoTreinoPage {
     if (this.corrida.descricao != '') {
       this.plano = this.corrida.planejamento;
     } else {
-      this.plano = this.musculacao.planejamento;
+      if (this.musculacao.descricao != '') {
+        this.plano = this.musculacao.planejamento;
+      }
     }
-    this.userProvider.setMensagemLida(this.plano).subscribe(() => {
-      this.dismiss();
-    });
+    if (this.plano) {
+      this.userProvider.setMensagemLida(this.plano).subscribe(() => {
+        this.dismiss();
+      });
+    }
+
   }
 }

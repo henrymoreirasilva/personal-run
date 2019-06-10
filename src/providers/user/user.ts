@@ -81,6 +81,15 @@ export class UserProvider {
     return this.http.post(`${this.uri}/treino/index.php`, queryString, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
   }
 
+  getCentralMensagens(user) {
+    return this.http.get(`${this.uri}/treino/aluno/index.php?req=mensagem&ps=${user.id}`);
+  }
+
+  setLeituraCentralMensagens(idMensagem, idUser) {
+    let queryString = `req=setleituracentralmsg&mensagem=${idMensagem}&user=${idUser}`;
+    return this.http.post(`${this.uri}/treino/aluno/index.php`, queryString, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+  }
+
   /*exist() {
     this.get().then(res => {
       console.log('resultado >>> ', res);

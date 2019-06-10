@@ -21,6 +21,7 @@ export class MyApp {
 
   planos: any;
   user: any;
+  qtdMensagens: any;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private userProvider: UserProvider) {
     this.initializeApp();
@@ -41,8 +42,6 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-
-
     });
   }
 

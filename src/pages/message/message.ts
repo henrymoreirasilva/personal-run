@@ -18,6 +18,7 @@ export class MessagePage {
   mensagem: string = '';
   retorno: string = '';
   user: any;
+  centralMensagens: any;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, private userProvider: UserProvider) {
     this.user = this.navParams.get('user');
@@ -25,13 +26,13 @@ export class MessagePage {
 
   ionViewDidLoad() {
     //console.log('ionViewDidLoad MessagePage');
-
+    
   }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-
+    this.getCentralMensagens();
   }
 
   enviarMensagem() {
@@ -43,6 +44,24 @@ export class MessagePage {
         }
       })
     //})
+  }
+
+  getCentralMensagens() {
+    this.userProvider.getCentralMensagens(this.user).subscribe((res: any) => {
+      if (res.data) {
+        this.centralMensagens = res.data;
+      }
+    })
+  }
+
+  setLeituraCentralMensagens(idMensagem) {
+
+      this.userProvider.setLeituraCentralMensagens(idMensagem, this.user.id).subscribe((res: any) => {
+        if (!res.error) {
+          document.getElementById('card-' + idMensagem).remove();
+        }
+      });
+
   }
 
 }

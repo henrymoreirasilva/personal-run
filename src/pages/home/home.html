@@ -5,6 +5,7 @@
     </button>
     <ion-title *ngIf="!userLogged">Início</ion-title>
     <ion-title *ngIf="userLogged">Cadastro</ion-title>
+    <span id="msg-aviso" *ngIf="qtdMensagens > 0">Você tem {{ qtdMensagens }} nova(s) mensagem(ns)</span>
     <img src="assets/imgs/logoprun.png" id="logo-prun-title" />
   </ion-navbar>
 </ion-header>

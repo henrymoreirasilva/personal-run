@@ -90,7 +90,7 @@ export class FichaPage {
   showMessage() {
     const modalMessage = this.modalController.create(MensagemDoTreinoPage, { 'musculacao': this.musculacao, 'corrida': { descricao: '' } });
     modalMessage.onDidDismiss(() => {
-      this.planos.musculacao.mensagemLida = 1;
+      this.musculacao.mensagemLida = 1;
       this.userProvider.create('planos', this.planos);
     });
     modalMessage.present();

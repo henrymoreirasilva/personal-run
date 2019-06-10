@@ -11,6 +11,8 @@ export class HomePage {
   userLogged: any;
   formLogin: any = {id:'', name:'', alias:'', image:'', password:'', user: ''};
   msgErrorLogin: string = '';
+  qtdMensagens: any;
+  
 
   constructor(public navCtrl: NavController, public userProvider: UserProvider, public modalController: ModalController) {
     this.msgErrorLogin = '';
@@ -24,6 +26,8 @@ export class HomePage {
       this.userLogged = res;
       if (this.userLogged) {
         this.getPlanos(this.userLogged.id);
+
+        this.getCentralMensagens();
       }
 
     });
@@ -72,4 +76,11 @@ export class HomePage {
     modal.present();
   }
   
+  getCentralMensagens() {
+    this.userProvider.getCentralMensagens(this.userLogged).subscribe((res: any) => {
+      if (res.data) {
+        this.qtdMensagens = res.data.length;
+      }
+    })
+  }
 }
