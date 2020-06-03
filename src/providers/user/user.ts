@@ -10,7 +10,8 @@ import { Storage } from "@ionic/storage";
 */
 @Injectable()
 export class UserProvider {
-  uri: string = 'https://www.aprun.com.br/api';
+  //uri: string = 'https://www.aprun.com.br/api';
+  uri: string = 'https://www.personalrun.com.br/api';
 
   constructor(public http: HttpClient, public storage: Storage) {
     //console.log('Hello UserProvider Provider');

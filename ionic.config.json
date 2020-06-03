@@ -7,7 +7,7 @@
   "proxies": [
     {
       "path": "/api",
-      "proxyUrl": "http://aprun.web7053.uni5.net/api"
+      "proxyUrl": "http://www.personalrun.com.br/api"
     }
   ]
 }

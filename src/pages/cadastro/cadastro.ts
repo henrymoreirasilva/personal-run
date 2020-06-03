@@ -55,16 +55,6 @@ export class CadastroPage {
       
     });
 
-    /*
-      alias: "felipinho"
-      birth: "00/00/0000"
-      id: "129"
-      image: "http://aprun.web7053.uni5.net/imagens/fotosClientes/f129.jpg"
-      name: "FELIPE"
-      phone1: ""
-      phone2: "(34) 3332-0819"
-      profession: ""
-    */
   }
 
   takeFoto(source: number = 1, mediaType: number = 1) {
