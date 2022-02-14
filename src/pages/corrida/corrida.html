@@ -21,12 +21,24 @@
 
     <img src="{{ user.image }}" />
     <span>Aluno: {{ user.name }}</span><br>
-    <small>Apelido: {{ user.alias }}</small>  
+    <small>Apelido: {{ user.alias }}</small>
+  </div>
+  <div class="fase-treino">
+    <!-- <ion-badge color="secondary">Preparatório</ion-badge> -->
+    <!-- <ion-badge color="secondary">Competitivo</ion-badge> -->
+    Fase de treino: <ion-badge color="primary">{{ corrida.fase_treino }}</ion-badge>
   </div>
   <div style="text-align: right">
-  <button (click)="showNomenclaturas()" ion-button small><ion-icon name="information-circle"></ion-icon></button>
-    <button (click)="showZonasTreinamento()" ion-button small><ion-icon name="heart"></ion-icon></button>
-    <button (click)="showPaceProva()" ion-button small><ion-icon name="timer"></ion-icon></button></div>
+    <button (click)="showNomenclaturas()" ion-button small>
+      <ion-icon name="information-circle"></ion-icon>
+    </button>
+    <button (click)="showZonasTreinamento()" ion-button small>
+      <ion-icon name="heart"></ion-icon>
+    </button>
+    <button (click)="showPaceProva()" ion-button small>
+      <ion-icon name="timer"></ion-icon>
+    </button>
+  </div>
   <div class="calendar-header">
     <ion-row class="calendar-month">
       <ion-col col-2 (click)="goToLastMonth()">
@@ -55,8 +67,9 @@
       </ion-row>
       <ion-row class="calendar-date">
         <ion-col col-1 *ngFor="let lastDay of daysInLastMonth" class="last-month">{{lastDay}}</ion-col>
-        <ion-col col-1 *ngFor="let day of daysInThisMonth" (click)="clickDay(day)" [class.currentDate]="currentDate == day"
-          [class.selectedDate]="day == selectedDate.day" [class.eventDay]="diaPossuiEvento(day)">{{ day }}
+        <ion-col col-1 *ngFor="let day of daysInThisMonth" (click)="clickDay(day)"
+          [class.currentDate]="currentDate == day" [class.selectedDate]="day == selectedDate.day"
+          [class.eventDay]="diaPossuiEvento(day)">{{ day }}
         </ion-col>
         <ion-col col-1 *ngFor="let nextDay of daysInNextMonth" class="next-month">{{nextDay}}</ion-col>
       </ion-row>
@@ -64,18 +77,18 @@
   </div>
   <div *ngIf="eventos.length">
     <hr>
-  <h1>
-    Treino para {{ selectedDate.day == currentDate?'hoje':'o dia ' + selectedDate.day }}
-  </h1>
-  <ion-list>
-    <ion-item *ngFor="let evento of eventos">
-      <h2>{{ evento.horaInicio }} até {{ evento.horaTermino }}</h2>
-      <h3 class="texto-treino">{{ evento.descricao }}</h3>
-      <p>{{ evento.observacao }}</p>
-      <button ion-button float-right (click)="showForm(evento)">
+    <h1>
+      Treino para {{ selectedDate.day == currentDate?'hoje':'o dia ' + selectedDate.day }}
+    </h1>
+    <ion-list>
+      <ion-item *ngFor="let evento of eventos">
+        <h2>{{ evento.horaInicio }} até {{ evento.horaTermino }}</h2>
+        <h3 class="texto-treino">{{ evento.descricao }}</h3>
+        <p>{{ evento.observacao }}</p>
+        <button ion-button float-right (click)="showForm(evento)">
           <ion-icon name="send"></ion-icon>
         </button>
-    </ion-item>
-  </ion-list>
-</div>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

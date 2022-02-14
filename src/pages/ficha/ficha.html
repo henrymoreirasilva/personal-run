@@ -24,7 +24,11 @@
     <span>Aluno: {{ user.name }}</span><br>
     <small>Apelido: {{ user.alias }}</small>
   </div>
-  <br>
+  <div class="fase-treino">
+    <!-- <ion-badge color="secondary">Preparatório</ion-badge> -->
+    <!-- <ion-badge color="secondary">Competitivo</ion-badge> -->
+    Fase de treino: <ion-badge color="primary">{{ musculacao.fase_treino }}</ion-badge>
+  </div>
   <ion-item-group *ngFor="let treino of treinos">
     <ion-list no-lines>
       <ion-item-divider color="light">
