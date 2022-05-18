@@ -24,10 +24,13 @@
     <span>Aluno: {{ user.name }}</span><br>
     <small>Apelido: {{ user.alias }}</small>
   </div>
-  <div class="fase-treino">
+  <div class="fase-treino" *ngIf="musculacao.fase_treino">
     <!-- <ion-badge color="secondary">Preparatório</ion-badge> -->
     <!-- <ion-badge color="secondary">Competitivo</ion-badge> -->
     Fase de treino: <ion-badge color="primary">{{ musculacao.fase_treino }}</ion-badge>
+  </div>
+  <div id="descricao-treino">
+    {{ musculacao.descricao }}
   </div>
   <ion-item-group *ngFor="let treino of treinos">
     <ion-list no-lines>
@@ -36,14 +39,26 @@
       </ion-item-divider>
 
       <ion-item *ngFor="let exercicio of treino.exercicios">
-        {{ exercicio.nomeExercicio }} - {{ exercicio.nomeCarga }} <br>
-        <small>Repetição:</small> {{ exercicio.nomeRepeticao }} <br>
-        <small>Intervalo:</small> {{ exercicio.nomeIntervalo }} <br>
-        <p *ngIf="exercicio.observacao">Obs.: {{ exercicio.observacao }}</p>
-        <p>Coment.: {{ exercicio.comentarioAluno }} </p>
+        <div>
+          {{ exercicio.nomeExercicio }}
+        </div>
+        <div>
+          <small>Carga:</small> {{ exercicio.nomeCarga }}
+        </div>
+        <div>
+          <small>Repetição:</small> {{ exercicio.nomeRepeticao }} <br>
+        </div>
+        <div>
+          <small>Intervalo:</small> {{ exercicio.nomeIntervalo }} <br>
+        </div>
+        
+        <div *ngIf="exercicio.observacao" class="observacao-exercicio"><br><small>Observação do exercício:</small><br><span>{{ exercicio.observacao }}{{ exercicio.observacao }}{{ exercicio.observacao }}{{ exercicio.observacao }}</span></div>
+
+        <div *ngIf="exercicio.comentarioAluno" class="comentario-exercicio"><br><small>Comentário do aluno:</small><span>{{ exercicio.comentarioAluno }}{{ exercicio.comentarioAluno }}{{ exercicio.comentarioAluno }}{{ exercicio.comentarioAluno }}{{ exercicio.comentarioAluno }}{{ exercicio.comentarioAluno }}</span></div>
+
         <button ion-button float-right (click)="showForm(exercicio)">
-            <ion-icon name="send"></ion-icon>
-          </button>
+          <ion-icon name="send"></ion-icon>
+        </button>
       </ion-item>
     </ion-list>
   </ion-item-group>

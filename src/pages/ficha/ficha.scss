@@ -4,4 +4,25 @@ page-ficha {
         border-radius: 3px;
         float: left;
         margin-right: 10px;}
+
+    #descricao-treino {
+        padding: 10px 0;
+        font-size: 12px;
+        color: #555;
+    }
+
+    .observacao-exercicio {
+        white-space: pre-line;
+        line-height: 12px;
+        > span {
+            line-height: 18px;
+        }
+    }
+    .comentario-exercicio {
+        white-space: pre-line;
+        line-height: 12px;
+        > span {
+            line-height: 18px;
+        }
+    }
 }
