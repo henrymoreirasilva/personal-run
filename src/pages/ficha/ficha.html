@@ -52,9 +52,9 @@
           <small>Intervalo:</small> {{ exercicio.nomeIntervalo }} <br>
         </div>
         
-        <div *ngIf="exercicio.observacao" class="observacao-exercicio"><br><small>Observação do exercício:</small><br><span>{{ exercicio.observacao }}{{ exercicio.observacao }}{{ exercicio.observacao }}{{ exercicio.observacao }}</span></div>
+        <div *ngIf="exercicio.observacao" class="observacao-exercicio"><br><small>Observação do exercício:</small> <span>{{ exercicio.observacao }}</span></div>
 
-        <div *ngIf="exercicio.comentarioAluno" class="comentario-exercicio"><br><small>Comentário do aluno:</small><span>{{ exercicio.comentarioAluno }}{{ exercicio.comentarioAluno }}{{ exercicio.comentarioAluno }}{{ exercicio.comentarioAluno }}{{ exercicio.comentarioAluno }}{{ exercicio.comentarioAluno }}</span></div>
+        <div *ngIf="exercicio.comentarioAluno" class="comentario-exercicio"><br><small>Comentário do aluno:</small> <span>{{ exercicio.comentarioAluno }}</span></div>
 
         <button ion-button float-right (click)="showForm(exercicio)">
           <ion-icon name="send"></ion-icon>
